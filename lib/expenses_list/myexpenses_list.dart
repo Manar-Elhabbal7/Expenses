@@ -20,14 +20,16 @@ class LItem extends StatelessWidget {
         itemCount: expenses.length,
         itemBuilder: (context, index) => Dismissible(
           key: ValueKey(expenses[index]),
+          
           background: Container(
-            color: Color(0xFF607d8b),
+            color: Color.fromARGB(255, 226, 115, 107),
             alignment: Alignment.centerLeft,
             padding: const EdgeInsets.only(left: 20),
             child: const Icon(Icons.delete, color: Colors.white),
           ),
+
           secondaryBackground: Container(
-            color: Color(0xFF607d8b),
+            color: Color.fromARGB(255, 226, 115, 107),
             alignment: Alignment.centerRight,
             padding: const EdgeInsets.only(right: 20),
             child: const Icon(Icons.delete, color: Colors.white),
