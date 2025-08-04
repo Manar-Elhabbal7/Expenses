@@ -101,23 +101,3 @@ class _ExpensesState extends State<Expenses> {
     );
   }
 }
-
-class ExpenseBucket{
-  final Category _category;
-  final List<Expense> expenses;
-
-  ExpenseBucket({required Category category, required this.expenses}) : _category = category;
-  ExpenseBucket.forCateogry({
-    List<Expense> allExpenses = const [],
-    required Category category,
-    required this.expenses}) : _category = category;
-
-
-  double totalExpenses(){
-    double sum = 0;
-    for (var expense in expenses) {
-      sum += expense.amount;
-    }
-    return sum;
-  }
-}
