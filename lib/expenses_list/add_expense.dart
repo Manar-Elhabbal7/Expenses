@@ -98,8 +98,10 @@ class _AddExpenseState extends State<AddExpense> {
             TextField(
               controller: _titleController,
               maxLength: 30,
+              
               decoration: const InputDecoration(
                 border: OutlineInputBorder(),
+
                 labelText: 'Title',
                 hintText: 'Enter title',
               ),
@@ -113,12 +115,14 @@ class _AddExpenseState extends State<AddExpense> {
                   child: TextField(
                     controller: _amountController,
                     maxLength: 10,
+                    
                     keyboardType: TextInputType.number,
                     decoration: const InputDecoration(
                       border: OutlineInputBorder(),
                       prefixText: '\$ ',
                       labelText: 'Amount',
                       hintText: 'Enter amount',
+                      
                     ),
                   ),
                 ),

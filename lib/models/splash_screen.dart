@@ -47,14 +47,14 @@ class _SplashScreenState extends State<SplashScreen> {
               'Expenses',
               style: GoogleFonts.pacifico(
                 textStyle: const TextStyle(
-                  fontSize: 80,
+                  fontSize: 90,
                   fontWeight: FontWeight.w100,
                   color: Colors.white,
                 ),
               ),
             ),
             const SizedBox(height: 20),
-            Image.asset('assets/wallet_logo.png', height: 220, width: 220),
+            Image.asset('assets/wallet_logo.png', height: 300, width: 300),
 
             const SizedBox(height: 30),
             LoadingAnimationWidget.twistingDots(

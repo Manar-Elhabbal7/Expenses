@@ -64,8 +64,10 @@ class _ExpensesState extends State<Expenses> {
             const SizedBox(width: 9),
             Text(
               'Expenses',
+              
               style: GoogleFonts.ubuntu(
                 textStyle: Theme.of(context).textTheme.titleLarge,
+                fontSize: 50
               ),
             ),
           ],
