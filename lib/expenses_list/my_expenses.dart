@@ -53,6 +53,10 @@ class _ExpensesState extends State<Expenses> {
 
   @override
   Widget build(BuildContext context) {
+    //the width of height of the screen to make it responsive
+    var width = MediaQuery.of(context).size.width;
+    var hight = MediaQuery.of(context).size.height;
+
     return Scaffold(
       appBar: AppBar(
         elevation: 3,
@@ -64,7 +68,6 @@ class _ExpensesState extends State<Expenses> {
             const SizedBox(width: 9),
             Text(
               'Expenses',
-              
               style: GoogleFonts.ubuntu(
                 textStyle: Theme.of(context).textTheme.titleLarge,
                 fontSize: 50
@@ -93,7 +96,7 @@ class _ExpensesState extends State<Expenses> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
-            isDismissible: true,
+            isDismissible: false,
             context: context,
             builder: (ctx) => AddExpense(onAddExpense: _addExpense),
           );

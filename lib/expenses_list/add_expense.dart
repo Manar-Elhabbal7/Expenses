@@ -87,114 +87,120 @@ class _AddExpenseState extends State<AddExpense> {
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(16.0),
+    return SizedBox(
+      
+      height: double.infinity,
       child: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            // title
-            TextField(
-              controller: _titleController,
-              maxLength: 30,
-              
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-
-                labelText: 'Title',
-                hintText: 'Enter title',
-              ),
-            ),
-            const SizedBox(height: 12),
-
-            //  amount and date picker
-            Row(
+        child: Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Expanded(
-                  child: TextField(
-                    controller: _amountController,
-                    maxLength: 10,
-                    
-                    keyboardType: TextInputType.number,
-                    decoration: const InputDecoration(
-                      border: OutlineInputBorder(),
-                      prefixText: '\$ ',
-                      labelText: 'Amount',
-                      hintText: 'Enter amount',
-                      
-                    ),
+                // title
+                TextField(
+                  controller: _titleController,
+                  maxLength: 30,
+                  
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+        
+                    labelText: 'Title',
+                    hintText: 'Enter title',
                   ),
                 ),
-                const SizedBox(width: 16),
-                Column(
+                const SizedBox(height: 12),
+        
+                //  amount and date picker
+                Row(
                   children: [
-                    Text(
-                      _selectedDate == null
-                          ? 'Select Date'
-                          : _formatter.format(_selectedDate!),
+                    Expanded(
+                      child: TextField(
+                        controller: _amountController,
+                        maxLength: 10,
+                        
+                        keyboardType: TextInputType.number,
+                        decoration: const InputDecoration(
+                          border: OutlineInputBorder(),
+                          prefixText: '\$ ',
+                          labelText: 'Amount',
+                          hintText: 'Enter amount',
+                          
+                        ),
+                      ),
                     ),
-                    IconButton(
-                      onPressed: _pickDate,
-                      icon: const Icon(Icons.calendar_month),
+                    const SizedBox(width: 16),
+                    Column(
+                      children: [
+                        Text(
+                          _selectedDate == null
+                              ? 'Select Date'
+                              : _formatter.format(_selectedDate!),
+                        ),
+                        IconButton(
+                          onPressed: _pickDate,
+                          icon: const Icon(Icons.calendar_month),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 12),
+        
+                // cateogry dropdown button
+                DropdownButtonFormField<Category>(
+                  value: _selectedCategory,
+                  decoration: const InputDecoration(
+                    border: OutlineInputBorder(),
+                    labelText: 'Category',
+                  ),
+                  items: Category.values.map((category) {
+                    return DropdownMenuItem(
+                      value: category,
+                      child: Text(category.name),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    if (value == null) return;
+                    setState(() {
+                      _selectedCategory = value;
+                    });
+                  },
+                ),
+                const SizedBox(height: 20),
+        
+                //Buttons
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () => Navigator.pop(context),
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF607d8b),
+                        foregroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Text('Cancel'),
+                    ),
+                    ElevatedButton(
+                      onPressed: saveExpense,
+                      style: ElevatedButton.styleFrom(
+                        backgroundColor: const Color(0xFF607d8b),
+                        foregroundColor: Colors.black,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                      ),
+                      child: const Text('Save Expense'),
                     ),
                   ],
                 ),
               ],
             ),
-            const SizedBox(height: 12),
-
-            // cateogry dropdown button
-            DropdownButtonFormField<Category>(
-              value: _selectedCategory,
-              decoration: const InputDecoration(
-                border: OutlineInputBorder(),
-                labelText: 'Category',
-              ),
-              items: Category.values.map((category) {
-                return DropdownMenuItem(
-                  value: category,
-                  child: Text(category.name),
-                );
-              }).toList(),
-              onChanged: (value) {
-                if (value == null) return;
-                setState(() {
-                  _selectedCategory = value;
-                });
-              },
-            ),
-            const SizedBox(height: 20),
-
-            //Buttons
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                ElevatedButton(
-                  onPressed: () => Navigator.pop(context),
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF607d8b),
-                    foregroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: const Text('Cancel'),
-                ),
-                ElevatedButton(
-                  onPressed: saveExpense,
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF607d8b),
-                    foregroundColor: Colors.black,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                    ),
-                  ),
-                  child: const Text('Save Expense'),
-                ),
-              ],
-            ),
-          ],
+          ),
         ),
       ),
     );
