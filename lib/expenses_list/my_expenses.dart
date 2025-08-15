@@ -1,6 +1,8 @@
+import 'dart:io';
 import 'package:expenses/expenses_list/add_expense.dart';
 import 'package:expenses/models/expense.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/cupertino.dart';//for ios
 import 'package:google_fonts/google_fonts.dart';
 import 'package:expenses/expenses_list/myexpenses_list.dart';
 
@@ -23,6 +25,8 @@ class Expenses extends StatefulWidget {
 }
 
 class _ExpensesState extends State<Expenses> {
+  //bool IOS = Platform.isIOS;
+  //we can use to show diff dialogs
   void _addExpense(Expense expense) {
     setState(() {
       allExpenses.add(expense);
@@ -96,6 +100,7 @@ class _ExpensesState extends State<Expenses> {
       floatingActionButton: FloatingActionButton(
         onPressed: () {
           showModalBottomSheet(
+            useSafeArea: true,
             isDismissible: false,
             context: context,
             builder: (ctx) => AddExpense(onAddExpense: _addExpense),
